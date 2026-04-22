@@ -27,16 +27,16 @@ eps_CH = 0.15
 eps_CH1 = 0.07
 eps_CH1t = 0.085
 eps_CAH = 0.085
-eps_CH2 = 0.13
+eps_CH2 = 0.25
 eps_CAH2 = 0.15
 eps_CH3 = 0.13
 eps_CH2r = 0.085
 eps_S = 0.085
 eps_SH = 0.085
-eps_CH3p = 0.00
-eps_P = 0.00
-eps_OE = 0.00
-eps_CR1 = 0.00
+eps_CH3p = 0.085
+eps_P = 0.085
+eps_OE = 0.085
+eps_CR1 = 0.15
 eps_H = 0.00
 eps_C0 = 0.00
 
@@ -193,6 +193,13 @@ special_non_local = [
         "epsilon": mg_OO_c12_rep,
     },
     {
+        "atomtypes": (["OE"], ["OE", "O", "OM"]),  # charged oxygen-oxygen repulsion
+        "interaction": "rep",
+        "sigma": None,  # not needed for repulsion
+        "epsilon": mg_OO_c12_rep,
+    },
+
+    {
         "atomtypes": (["OM"], ["OM"]),  # charged oxygen-oxygen repulsion
         "interaction": "rep",
         "sigma": None,  # not needed for repulsion
@@ -225,7 +232,7 @@ special_non_local = [
     {
         "atomtypes": (
             ["NZ"],
-            ["N", "NT", "NR", "C", "CH1", "CAH", "CH2", "CH3"],
+            ["N", "NT", "NR", "C", "CH1", "CAH", "CH2", "CH3", "CR1"],
         ),  # Repulsion of charged N with all but CH, CH2r (aromatic) and CZ, NE (for ARG-ARG interactions)
         "interaction": "rep",
         "sigma": None,
@@ -234,7 +241,7 @@ special_non_local = [
     {
         "atomtypes": (
             ["NL"],
-            ["N", "NT", "NR", "C", "NE", "CZ", "CH1", "CAH", "CH2", "CH3", "CH2r"],
+            ["N", "NT", "NR", "C", "NE", "CZ", "CH1", "CAH", "CH2", "CH3", "CH2r", "CR1", "P"],
         ),  # Repulsion of charged N with all but CH (interacts less then NZ to make ARG stickier than LYS)
         "interaction": "rep",
         "sigma": None,
@@ -250,7 +257,7 @@ special_non_local = [
         "epsilon": 0.085,
     },
     {
-        "atomtypes": (["OM"], ["CH", "CH1", "CAH", "CH3", "CH2r", "S"]),  # repulsion of charged O with hydrophobic
+        "atomtypes": (["OM"], ["CH", "CH1", "CAH", "CH3", "CH2r", "S", "CR1"]),  # repulsion of charged O with hydrophobic
         "interaction": "rep",
         "sigma": None,
         "epsilon": None,

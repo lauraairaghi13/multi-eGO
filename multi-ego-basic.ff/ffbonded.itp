@@ -246,7 +246,7 @@
 #define gi_1           0.0   167.42309
 ; planar groups 40
 ;
-#define gi_1bis        0.0   334.84617
+#define gi_1a        0.0   334.84617
 ; planar groups 40
 ;
 #define gi_2      35.26439   334.84617
@@ -277,16 +277,20 @@
 ;
 ; ICP(H)[N]  CP[N] PD[N] NP[N]
 ;
-#define gd_0    -90.000       2.00          1
+#define gd_0      0.000       2.00          1
 ; N-CHn-CHn-OA (lipid)	1.4
-#define gd_1    -90.000       2.00          1
+#define gd_1      0.000       2.00          1
 ; N-CHn-CHn-OA (lipid)	1.4
-#define gd_2    -90.000       4.00          1
+#define gd_0a      0.000     0.50         3
+; N-CHn-CHn-OA (lipid)	1.4
+#define gd_1a      0.000     0.50         3
+; N-CHn-CHn-OA (lipid)	1.4
+#define gd_2    -90.000       0.00          1
 ; N-CHn-CHn-OA (lipid)	1.4
 
 #define gd_3   -180.000       3.20          3
 ; N-CHn-CHn-OA (lipid)	1.4
-#define gd_3bis   -180.000    2.40          1
+#define gd_3a   -180.000    2.40          1
 ; N-CHn-CHn-OA (lipid)	1.4
 
 
@@ -321,7 +325,7 @@
 #define gd_19     0.000       3.14          2
 ; -OA-P-	0.75
 ;
-#define gd_20     0.000       2.55          2
+#define gd_20     0.000       1.30          3
 ; O-P-O- (dna, lipids)	1.2
 ;
 #define gd_21     0.000       16.7          2
@@ -339,13 +343,19 @@
 #define gd_26     0.000       2.93          3
 ; -CH2-S-	0.7
 ;
-#define gd_27     0.000       3.19          3
+#define gd_27     180.000       4.50          1
 ; O-P-O- (dna, lipids)	0.8
 ;
 #define gd_29     0.000       3.77          3
 ; -C,CHn,SI-	0.9
 ;
-#define gd_29bis  0.000       4.50          2
+#define gd_29b  0.000       4.50          2
+; -C,CHn,SI-	0.9
+;
+#define gd_29c     0.000    10.00          3
+; -C,CHn,SI-	0.9
+;
+#define gd_29a     100.0    3.70          4
 ; -C,CHn,SI-	0.9
 ;
 #define gd_30     0.000       3.90          3
@@ -355,6 +365,9 @@
 ; HC-C-S-	1.0
 ;
 #define gd_34     0.000       5.92          3
+; -CHn,SI-CHn-	1.4
+;
+#define gd_34a   180.0       2.50          2
 ; -CHn,SI-CHn-	1.4
 ;
 ;#define gd_36     0.000       8.62          3
@@ -367,7 +380,16 @@
 #define gd_39   180.000        1.0          6
 ; -CHn-N,NE-	0.24
 ;
-#define gd_40     0.000        1.0          6
+#define gd_40     0.000        2.0          2
+; -CHn-C,NR(ring), CR1-	0.24
+;
+#define gd_40a    50.000        1.67          1
+; -CHn-C,NR(ring), CR1-	0.24
+;
+#define gd_40b    0.000        0.50          3
+; -CHn-C,NR(ring), CR1-	0.24
+;
+#define gd_40a   0.000        1.00          6
 ; -CHn-C,NR(ring), CR1-	0.24
 ;
 #define gd_41     0.000       3.77          6

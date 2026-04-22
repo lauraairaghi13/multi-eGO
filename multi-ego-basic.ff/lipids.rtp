@@ -171,32 +171,35 @@ C313 C314 C315   ga_15
 C314 C315 C316   ga_15  
 [ impropers ]
 C2 O21 C3 C1 gi_2 ; asymmetric atom CD  
-C21 O21 O22 C22 gi_1bis ; planarity of sn-2 carbonyl 
+C21 O21 O22 C22 gi_1a ; planarity of sn-2 carbonyl 
 C28 C29 C210 C211 gi_1 ; planarity of the double bond
-C31 O31 O32 C32 gi_1bis ; planarity of sn-1 carbonyl 
+C31 O31 O32 C32 gi_1a ; planarity of sn-1 carbonyl 
 [ dihedrals ]
-C13 N C12 C11 gd_29      
+C13 N C12 C11 gd_29c      
 N C12 C11 O12 gd_4      
 N C12 C11 O12 gd_36      
 C12 C11 O12 P gd_29      
-C12 C11 O12 P gd_29bis 
-C11 O12 P O13 gd_0
-O13 P O11 C1 gd_1
-O22 O12 P O14 gd_1
+C12 C11 O12 P gd_29b 
+C11 O12 P O13 gd_0a
+O13 P O11 C1 gd_1a
+;O22 O12 P O14 gd_1
 C11 O12 P O11 gd_20      
 C11 O12 P O11 gd_27      
 O12 P O11 C1 gd_20      
 O12 P O11 C1 gd_27      
 P O11 C1 C2 gd_29      
-P O11 C1 C2 gd_29bis 
+P O11 C1 C2 gd_29b
+O13 P O11 C1 gd_1
 O14 P O11 C1 gd_0
 O11 C1 C2 C3 gd_34      
-C1 C2 O21 C21 gd_29      
+C1 C2 O21 C21 gd_29a      
 C1 C2 C3 O31 gd_34      
+C1 C2 C3 O31 gd_34a      
 C2 O21 C21 C22 gd_13      
 C2 C3 O31 C31 gd_29      
-C2 C3 O31 C31 gd_29bis 
-O21 C21 C22 C23 gd_40      
+C2 C3 O31 C31 gd_29b 
+O21 C21 C22 C23 gd_40a      
+O21 C21 C22 C23 gd_40b      
 O22 C21 C22 C23 gd_2
 C21 C22 C23 C24 gd_34      
 C22 C23 C24 C25 gd_34      
@@ -213,10 +216,10 @@ C213 C214 C215 C216 gd_34
 C214 C215 C216 C217 gd_34      
 C215 C216 C217 C218 gd_34      
 C3 O31 C31 C32 gd_13      
-O31 C31 C32 C33 gd_40      
+O31 C31 C32 C33 gd_40a      
 C31 C32 C33 C34 gd_34      
 O32 C31 C32 C33 gd_3
-O32 C31 C32 C33 gd_3bis
+O32 C31 C32 C33 gd_3a
 C32 C33 C34 C35 gd_34      
 C33 C34 C35 C36 gd_34      
 C34 C35 C36 C37 gd_34      
@@ -799,28 +802,28 @@ C313    C314    C315    C316 gd_34
 ; [ impropers ]
 ;;  ai    aj    ak    al   gromos type
 ;   CD   OE   CE   CC   gi_2 ; asymmetric atom CD
-;  C1A   OE   OF  C1B   gi_1bis ; planarity of sn-2 carbonyl
+;  C1A   OE   OF  C1B   gi_1a ; planarity of sn-2 carbonyl
 ;  C1H  C1I  C1J  C1K   gi_1 ; planarity of the double bond
-;  C2A   OG   OH  C2B   gi_1bis ; planarity of sn-1 carbonyl
+;  C2A   OG   OH  C2B   gi_1a ; planarity of sn-1 carbonyl
 ; [ dihedrals ]
 ;;  ai    aj    ak    al   gromos type
 ;  CN1  NTM   CA   CB    gd_29
 ;  NTM   CA   CB   OA    gd_4
 ;  NTM   CA   CB   OA    gd_36
 ;   CA   CB   OA    P    gd_29
-;   CA   CB   OA    P    gd_29bis
+;   CA   CB   OA    P    gd_29b
 ;   CB   OA    P   OD    gd_20
 ;   CB   OA    P   OD    gd_27
 ;   OA    P   OD   CC    gd_20
 ;   OA    P   OD   CC    gd_27
 ;    P   OD   CC   CD    gd_29
-;    P   OD   CC   CD    gd_29bis
+;    P   OD   CC   CD    gd_29b
 ;   OD   CC   CD   CE    gd_34
 ;   CC   CD   OE  C1A    gd_29
 ;   CC   CD   CE   OG    gd_34
 ;   CD   OE  C1A  C1B    gd_13
 ;   CD   CE   OG  C2A    gd_29
-;   CD   CE   OG  C2A    gd_29bis
+;   CD   CE   OG  C2A    gd_29b
 ;   OE  C1A  C1B  C1C    gd_40
 ;  C1A  C1B  C1C  C1D    gd_34
 ;  C1B  C1C  C1D  C1E    gd_34
