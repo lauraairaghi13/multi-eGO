@@ -34,9 +34,9 @@ eps_CH2r = 0.085
 eps_S = 0.085
 eps_SH = 0.085
 eps_CH3p = 0.085
-eps_P = 0.085
+eps_P = 0.85
 eps_OE = 0.085
-eps_CR1 = 0.15
+eps_CR1 = 0.10
 eps_H = 0.00
 eps_C0 = 0.00
 
@@ -119,7 +119,7 @@ gromos_atp = pd.DataFrame(
             4.0 * 0.44592**12 * eps_CH1,  # "CH1",  sig=0.50192
             4.0 * 0.44592**12 * eps_CH1t,  # "CH1t",  sig=0.50192
             4.0 * 0.44592**12 * eps_CAH,  # "CAH",  sig=0.50192
-            4.0 * 0.40704**12 * eps_CH2,  # "CH2",  sig=0.40704
+            4.0 * 0.46704**12 * eps_CH2,  # "CH2",  sig=0.40704
             4.0 * 0.40704**12 * eps_CAH2,  # "CAH2", sig=0.40704
             4.0 * 0.37479**12 * eps_CH3,  # "CH3",  sig=0.37479
             4.0 * 0.39547**12 * eps_CH2r,  # "CH2r", sig=0.39547
@@ -148,7 +148,7 @@ gromos_atp = pd.DataFrame(
             4.0 * 0.44592**6 * eps_CH1,  # "CH1"
             4.0 * 0.44592**6 * eps_CH1t,  # "CH1t"
             4.0 * 0.44592**6 * eps_CAH,  # "CAH"
-            4.0 * 0.40704**6 * eps_CH2,  # "CH2"
+            4.0 * 0.46704**6 * eps_CH2,  # "CH2"
             4.0 * 0.40704**6 * eps_CAH2,  # "CAH2"
             4.0 * 0.37479**6 * eps_CH3,  # "CH3"
             4.0 * 0.39547**6 * eps_CH2r,  # "CH2r"
@@ -198,7 +198,6 @@ special_non_local = [
         "sigma": None,  # not needed for repulsion
         "epsilon": mg_OO_c12_rep,
     },
-
     {
         "atomtypes": (["OM"], ["OM"]),  # charged oxygen-oxygen repulsion
         "interaction": "rep",
@@ -228,7 +227,7 @@ special_non_local = [
         "interaction": "att",
         "sigma": mg_HO_sigma,
         "epsilon": mg_eps_HO,
-    },
+   },
     {
         "atomtypes": (
             ["NZ"],
@@ -263,6 +262,18 @@ special_non_local = [
         "epsilon": None,
     },
     {
+        "atomtypes": (["P"], ["P", "CH2", "CR1", "C"]),  # repulsion of charged O with hydrophobic
+        "interaction": "rep",
+        "sigma": None,
+        "epsilon": None,
+    },
+    {
+        "atomtypes": (["CH3p"], ["CH3p", "CH2", "CR1", "C"]),  # repulsion of charged O with hydrophobic
+        "interaction": "rep",
+        "sigma": None,
+        "epsilon": None,
+    },
+    {
         "atomtypes": (
             ["OM"],
             ["CAH2", "CH2", "CH1t"],
@@ -284,7 +295,7 @@ special_non_local = [
         "epsilon": 0.10,
     },
     {
-        "atomtypes": (["NT", "N"], ["CH", "CH2", "CH3", "CH1", "CH2r"]),  # weak interactions of polar N
+        "atomtypes": (["NT", "N"], ["CH", "CH2", "CH3", "CH1", "CH2r", "CR1"]),  # weak interactions of polar N
         "interaction": "att",
         "sigma": None,
         "epsilon": 0.07,
@@ -334,8 +345,13 @@ special_non_local = [
         "sigma": None,
         "epsilon": 0.15,
     },
+    {
+        "atomtypes": (["OM"], ["CH3p"]),
+        "interaction": "att",
+        "sigma": None,
+        "epsilon": 0.18,
+    },
 ]
-
 # Verify that every attractive special interaction carries an epsilon at least
 # as large as the global minimum.  A violation here means the entry was
 # mis-typed and would silently produce interactions weaker than the threshold
