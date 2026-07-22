@@ -27,16 +27,16 @@ eps_CH = 0.15
 eps_CH1 = 0.07
 eps_CH1t = 0.085
 eps_CAH = 0.085
-eps_CH2 = 0.25
+eps_CH2 = 0.45
 eps_CAH2 = 0.15
 eps_CH3 = 0.13
 eps_CH2r = 0.085
 eps_S = 0.085
 eps_SH = 0.085
-eps_CH3p = 0.085
-eps_P = 0.85
-eps_OE = 0.085
-eps_CR1 = 0.10
+eps_CH3p = 0.185
+eps_P = 0.11
+eps_OE = 0.12
+eps_CR1 = 0.14
 eps_H = 0.00
 eps_C0 = 0.00
 
@@ -95,7 +95,7 @@ gromos_atp = pd.DataFrame(
             2.5 * 0.360236**12,  # "CH2r",1.193966e-05
             2.5 * 0.318498**12,  # "S",   2.724050e-06
             2.5 * 0.318498**12,  # "SH",   2.724050e-06
-            2.5 * 0.350981**12,  # "CH3p",8.736473e-06
+            2.5 * 0.265905**12,  # "CH3p",3.1236e-06
             2.5 * 0.328121**12,  # "P",   3.893600e-06
             2.5 * 0.268811**12,  # "OE",  3.558824e-07
             2.5 * 0.341540**12,  # "CR1", 6.298560e-06
@@ -119,7 +119,7 @@ gromos_atp = pd.DataFrame(
             4.0 * 0.44592**12 * eps_CH1,  # "CH1",  sig=0.50192
             4.0 * 0.44592**12 * eps_CH1t,  # "CH1t",  sig=0.50192
             4.0 * 0.44592**12 * eps_CAH,  # "CAH",  sig=0.50192
-            4.0 * 0.46704**12 * eps_CH2,  # "CH2",  sig=0.40704
+            4.0 * 0.38581**12 * eps_CH2,  # "CH2",  sig=0.40704
             4.0 * 0.40704**12 * eps_CAH2,  # "CAH2", sig=0.40704
             4.0 * 0.37479**12 * eps_CH3,  # "CH3",  sig=0.37479
             4.0 * 0.39547**12 * eps_CH2r,  # "CH2r", sig=0.39547
@@ -128,7 +128,7 @@ gromos_atp = pd.DataFrame(
             4.0 * 0.37479**12 * eps_CH3p,  # "CH3p", sig=0.37479
             4.0 * 0.33856**12 * eps_P,  # "P",    sig=0.33856
             4.0 * 0.28492**12 * eps_OE,  # "OE",   sig=0.28492
-            4.0 * 0.37412**12 * eps_CR1,  # "CR1",  sig=0.37412
+            4.0 * 0.36054**12 * eps_CR1,  # "CR1",  sig=0.37412
             4.0 * 0.000000000 * eps_H,  # "H",
             4.0 * 0.000000000 * eps_C0,  # "C0",
         ],
@@ -148,7 +148,7 @@ gromos_atp = pd.DataFrame(
             4.0 * 0.44592**6 * eps_CH1,  # "CH1"
             4.0 * 0.44592**6 * eps_CH1t,  # "CH1t"
             4.0 * 0.44592**6 * eps_CAH,  # "CAH"
-            4.0 * 0.46704**6 * eps_CH2,  # "CH2"
+            4.0 * 0.38581**6 * eps_CH2,  # "CH2"
             4.0 * 0.40704**6 * eps_CAH2,  # "CAH2"
             4.0 * 0.37479**6 * eps_CH3,  # "CH3"
             4.0 * 0.39547**6 * eps_CH2r,  # "CH2r"
@@ -157,7 +157,7 @@ gromos_atp = pd.DataFrame(
             4.0 * 0.37479**6 * eps_CH3p,  # "CH3p"
             4.0 * 0.33856**6 * eps_P,  # "P",
             4.0 * 0.28492**6 * eps_OE,  # "OE",
-            4.0 * 0.37412**6 * eps_CR1,  # "CR1",
+            4.0 * 0.36054**6 * eps_CR1,  # "CR1",
             4.0 * 0.00000000 * eps_H,  # "H",
             4.0 * 0.00000000 * eps_C0,  # "C0",
         ],
@@ -351,6 +351,28 @@ special_non_local = [
         "sigma": None,
         "epsilon": 0.18,
     },
+    {
+        "atomtypes": (["P"], ["OM"]),
+        "interaction": "att",
+        "sigma": 0.366,
+        "epsilon": 0.19,
+    },
+    {
+        "atomtypes": (["NL"], ["OE"]),
+        "interaction": "att",
+        "sigma": 0.353,
+        "epsilon": 0.14,
+    },
+    {
+        "atomtypes": (["CH3p"], ["OA"]),
+        "interaction": "att",
+        "sigma":0.273 ,
+        "epsilon": 0.17,
+    },
+
+
+
+
 ]
 # Verify that every attractive special interaction carries an epsilon at least
 # as large as the global minimum.  A violation here means the entry was
