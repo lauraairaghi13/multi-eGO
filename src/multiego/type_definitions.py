@@ -27,7 +27,8 @@ eps_CH = 0.15
 eps_CH1 = 0.07
 eps_CH1t = 0.085
 eps_CAH = 0.085
-eps_CH2 = 0.45
+eps_CH2 = 0.13
+eps_CH2l = 0.45 # IF NOT, back to 0.45
 eps_CAH2 = 0.15
 eps_CH3 = 0.13
 eps_CH2r = 0.085
@@ -60,6 +61,7 @@ gromos_atp = pd.DataFrame(
             "CH1t",
             "CAH",
             "CH2",
+            "CH2l",
             "CAH2",
             "CH3",
             "CH2r",
@@ -72,7 +74,7 @@ gromos_atp = pd.DataFrame(
             "H",
             "C0",
         ],
-        "at.num": [8, 8, 8, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 16, 16, 6, 15, 8, 6, 1, 20],
+        "at.num": [8, 8, 8, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 16, 16, 6, 15, 8, 6, 1, 20],
         "rc_c12": [
             2.5 * 0.262134**12,  # "O",   2.631580e-07
             2.5 * 0.253061**12,  # "OM",  1.724403e-07
@@ -90,6 +92,7 @@ gromos_atp = pd.DataFrame(
             2.5 * 0.415167**12,  # "CH1t", 6.555574e-05
             2.5 * 0.415167**12,  # "CAH", 6.555574e-05
             2.5 * 0.368035**12,  # "CH2", 1.543890e-05
+            2.5 * 0.368035**12,  # "CH2l", 1.543890e-05
             2.5 * 0.368035**12,  # "CAH2",1.543890e-05
             2.5 * 0.350505**12,  # "CH3", 8.595562e-06
             2.5 * 0.360236**12,  # "CH2r",1.193966e-05
@@ -119,14 +122,15 @@ gromos_atp = pd.DataFrame(
             4.0 * 0.44592**12 * eps_CH1,  # "CH1",  sig=0.50192
             4.0 * 0.44592**12 * eps_CH1t,  # "CH1t",  sig=0.50192
             4.0 * 0.44592**12 * eps_CAH,  # "CAH",  sig=0.50192
-            4.0 * 0.38581**12 * eps_CH2,  # "CH2",  sig=0.40704
+            4.0 * 0.40704**12 * eps_CH2,  # "CH2",  sig=0.40704
+            4.0 * 0.38581**12 * eps_CH2l,  # "CH2l",  sig=0.40704
             4.0 * 0.40704**12 * eps_CAH2,  # "CAH2", sig=0.40704
             4.0 * 0.37479**12 * eps_CH3,  # "CH3",  sig=0.37479
             4.0 * 0.39547**12 * eps_CH2r,  # "CH2r", sig=0.39547
             4.0 * 0.33077**12 * eps_S,  # "S",    sig=0.33077
             4.0 * 0.33077**12 * eps_SH,  # "SH",    sig=0.33077
-            4.0 * 0.37479**12 * eps_CH3p,  # "CH3p", sig=0.37479
-            4.0 * 0.33856**12 * eps_P,  # "P",    sig=0.33856
+            4.0 * 0.31479**12 * eps_CH3p,  # "CH3p", sig=0.37479
+            4.0 * 0.42856**12 * eps_P,  # "P",    sig=0.33856
             4.0 * 0.28492**12 * eps_OE,  # "OE",   sig=0.28492
             4.0 * 0.36054**12 * eps_CR1,  # "CR1",  sig=0.37412
             4.0 * 0.000000000 * eps_H,  # "H",
@@ -148,14 +152,15 @@ gromos_atp = pd.DataFrame(
             4.0 * 0.44592**6 * eps_CH1,  # "CH1"
             4.0 * 0.44592**6 * eps_CH1t,  # "CH1t"
             4.0 * 0.44592**6 * eps_CAH,  # "CAH"
-            4.0 * 0.38581**6 * eps_CH2,  # "CH2"
+            4.0 * 0.40704**6 * eps_CH2,  # "CH2"
+            4.0 * 0.38581**6 * eps_CH2l,  # "CH2l"
             4.0 * 0.40704**6 * eps_CAH2,  # "CAH2"
             4.0 * 0.37479**6 * eps_CH3,  # "CH3"
             4.0 * 0.39547**6 * eps_CH2r,  # "CH2r"
             4.0 * 0.33077**6 * eps_S,  # "S",
             4.0 * 0.33077**6 * eps_SH,  # "SH",
-            4.0 * 0.37479**6 * eps_CH3p,  # "CH3p"
-            4.0 * 0.33856**6 * eps_P,  # "P",
+            4.0 * 0.31479**6 * eps_CH3p,  # "CH3p"
+            4.0 * 0.42856**6 * eps_P,  # "P",
             4.0 * 0.28492**6 * eps_OE,  # "OE",
             4.0 * 0.36054**6 * eps_CR1,  # "CR1",
             4.0 * 0.00000000 * eps_H,  # "H",
@@ -240,7 +245,7 @@ special_non_local = [
     {
         "atomtypes": (
             ["NL"],
-            ["N", "NT", "NR", "C", "NE", "CZ", "CH1", "CAH", "CH2", "CH3", "CH2r", "CR1", "P"],
+            ["N", "NT", "NR", "C", "NE", "CZ", "CH1", "CAH", "CH2", "CH2l", "CH3", "CH2r", "CR1", "P"],
         ),  # Repulsion of charged N with all but CH (interacts less then NZ to make ARG stickier than LYS)
         "interaction": "rep",
         "sigma": None,
@@ -262,13 +267,13 @@ special_non_local = [
         "epsilon": None,
     },
     {
-        "atomtypes": (["P"], ["P", "CH2", "CR1", "C"]),  # repulsion of charged O with hydrophobic
+        "atomtypes": (["P"], ["P", "CH2l", "CR1", "C"]),  # repulsion of charged O with hydrophobic
         "interaction": "rep",
         "sigma": None,
         "epsilon": None,
     },
     {
-        "atomtypes": (["CH3p"], ["CH3p", "CH2", "CR1", "C"]),  # repulsion of charged O with hydrophobic
+        "atomtypes": (["CH3p"], ["CH3p", "CH2l", "CR1", "C"]),  # repulsion of charged O with hydrophobic
         "interaction": "rep",
         "sigma": None,
         "epsilon": None,
@@ -276,7 +281,7 @@ special_non_local = [
     {
         "atomtypes": (
             ["OM"],
-            ["CAH2", "CH2", "CH1t"],
+            ["CAH2", "CH2","CH2l", "CH1t"],
         ),  # Weak interaction of OM based on hyd of CAH2 and CH2 (Not sure about CH2) from local fingerprint Parrinello and ATDhisto contact probability
         "interaction": "att",
         "sigma": None,
@@ -295,7 +300,7 @@ special_non_local = [
         "epsilon": 0.10,
     },
     {
-        "atomtypes": (["NT", "N"], ["CH", "CH2", "CH3", "CH1", "CH2r", "CR1"]),  # weak interactions of polar N
+        "atomtypes": (["NT", "N"], ["CH", "CH2","CH2l", "CH3", "CH1", "CH2r", "CR1"]),  # weak interactions of polar N
         "interaction": "att",
         "sigma": None,
         "epsilon": 0.07,
@@ -307,7 +312,7 @@ special_non_local = [
         "epsilon": 0.085,
     },
     {
-        "atomtypes": (["CZ", "C", "NE", "NR"], ["CH2", "CH3", "CH1", "CH2r"]),  # polar-hyd weak interactions but not CH
+        "atomtypes": (["CZ", "C", "NE", "NR"], ["CH2", "CH2l","CH3", "CH1", "CH2r"]),  # polar-hyd weak interactions but not CH
         "interaction": "att",
         "sigma": None,
         "epsilon": 0.07,
@@ -328,7 +333,7 @@ special_non_local = [
         "epsilon": mg_eps_HO,
     },
     {
-        "atomtypes": (["OA"], ["CH2", "CH3", "CAH2"]),  # H-bond of OA with polar and charged
+        "atomtypes": (["OA"], ["CH2", "CH2l", "CH3", "CAH2"]),  # H-bond of OA with polar and charged
         "interaction": "att",
         "sigma": None,
         "epsilon": 0.085,
@@ -349,7 +354,7 @@ special_non_local = [
         "atomtypes": (["OM"], ["CH3p"]),
         "interaction": "att",
         "sigma": None,
-        "epsilon": 0.18,
+        "epsilon": 0.23,
     },
     {
         "atomtypes": (["P"], ["OM"]),
@@ -367,11 +372,29 @@ special_non_local = [
         "atomtypes": (["CH3p"], ["OA"]),
         "interaction": "att",
         "sigma":0.273 ,
-        "epsilon": 0.17,
+        "epsilon": 0.23,
     },
-
-
-
+    # {
+    #     "atomtypes": (["CH2l"], ["CH2", "CH3", "CAH2", "CH1", "CH", "CH2r"]),
+    #     "interaction": "att",
+    #     "sigma":None ,
+    #     "epsilon": 0.5,
+    # },
+    #{
+    #    "atomtypes": (["CH2l"], ["OM"]),
+    #    "interaction": "att",
+    #    "sigma":0.277 ,
+    #    "epsilon": 0.135,
+    #},
+    #{
+    #    "atomtypes": (["CH2l"], ["NL"]),
+    #    "interaction": "att",
+    #    "sigma":0.399 ,
+    #    "epsilon": 0.08,
+    #},
+#
+#
+#
 
 ]
 # Verify that every attractive special interaction carries an epsilon at least

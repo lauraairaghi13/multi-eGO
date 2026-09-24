@@ -366,7 +366,10 @@
 ;
 #define gd_34     0.000       5.92          3
 ; -CHn,SI-CHn-	1.4
-;
+; 
+#define gd_34b     0.000       0.5          1
+; -CHn,SI-CHn-	1.4
+; 
 #define gd_34a   180.0       2.50          2
 ; -CHn,SI-CHn-	1.4
 ;
